@@ -1,0 +1,32 @@
+{% extends "adminpage/index.html" %}
+{% load crispy_forms_tags %}
+
+{% block judul %}
+        <title>tambah dokumentasi</title>
+{% endblock judul %}
+{% block judul2 %}
+        <h1 class="h3 mb-0 text-gray-800">Tambah Dokumentasi RW 12</h1>
+{% endblock judul2 %}
+{% block isi %}
+<div class="card">
+  <div class="card-header">
+    Buat dan Tambah Dokumentasi
+  </div>
+  <div class="card-body">
+        <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-12 ">
+        <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+         {{ form|crispy }}
+
+           <div class="modal-footer">
+            <a href="{% url 'dokumentasi' %}" class="btn btn-secondary">batal</a>
+            <button type="Submit" value="Submit" name="tambahdokumentasi" class="btn btn-primary">tambah dokumentasi</button>
+        </div>
+        </form>
+        </div>
+        </div>
+  </div>
+</div>
+
+{% endblock isi %}

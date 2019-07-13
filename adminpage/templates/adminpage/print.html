@@ -1,0 +1,132 @@
+{% load static%}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static "css/print.css" %}">
+    <title>Print data</title>
+    <style>
+.bawah {
+    padding-top : 20px;
+}
+th,td {
+  padding: 5px;
+  text-align:center;
+border-bottom: 1px solid blue;
+
+}
+th{
+background-color: blue;
+  color: white;
+}
+td{
+    text-align:center
+}
+table {
+  
+  border-collapse: collapse;
+}
+
+table{
+  width :100%;
+  
+}
+
+
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+}
+    .bg-info {
+  background-color: #17a2b8 !important;
+}
+
+.text-center{
+        text-align : center;
+    }
+.text-right{
+        text-align:right;
+        
+    }
+    
+.container{
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    </style>
+  </head>
+  <body>
+        <div class="container mt-5">
+            <div class="row pt-5 justify-content-center">
+                <h4 class="text-center">Daftar data </h4>
+            </div>
+            <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <hr class="bg-dark">
+            </div>           
+            </div>
+            <div class="row pt-5 justify-content-center">
+                <div class="col-lg-10">
+                    <table class="table table-striped">
+                        <thead class="bg-info text-white">
+                            <tr>
+                            <th scope="col">NO</th>
+                            <th scope="col">NIK</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">jenis kelamin</th>
+                            <th scope="col">RT</th>
+                            <th scope="col">Alamat</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for d in data %}
+                        
+                            <tr>
+                            <td>{{forloop.counter}}</th>
+                            <td>{{d.nik}}</td>
+                            <td>{{d.nama}}</td>
+                            <td>{{d.jeniskelamin}}</td>
+                            <td>{{d.rt}}</td>
+                            <td>{{d.alamat}}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                        </table>
+                </div>
+            </div>
+
+
+
+            <div class="row mt-5">
+                <div class="col-10">
+                    <p class="bawah text-right">Di print oleh :</p>
+                    <br>
+                    <br>
+                   <p class="text-right">{{user}}</p>
+                   
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,134 @@
+{% extends "adminpage/index.html" %}
+{% block judul %}
+<title>atur data</title>
+{% endblock judul %}
+
+{% block judul2 %}
+<h1 class="h3 mb-0 text-gray-800">atur data penduduk RW 12</h1>
+<a  href="#" data-toggle="modal" data-target="#modaltambah" class=" d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i>Tambah data</a>
+ <!-- modal tamba -->
+ <div class="modal fade" id="modaltambah" tabindex="-1" role="dialog" aria-labelledby="tambah" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tambah">tambah data penduduk</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST">
+        {% csrf_token %}
+          <div class="form-group">
+            <label for="NIK" class="col-form-label">NIK</label>
+            <input required name="nik" type="text" placeholder="masukan nomor induk kependudukan" class="form-control" id="NIK">
+          </div>
+          <div class="form-group">
+            <label for="Nama" class="col-form-label">Nama</label>
+            <input required placeholder="masukan nama" name="nama" type="text" class="form-control" id="Nama">
+          </div>
+          <div class="form-group">
+            <label for="tanggal" class="col-form-label">Tanggal lahir</label>
+            <input required name="tanggallahir" type="date" class="form-control" id="tanggal">
+          </div>
+          <label class="col-form-label">Jenis Kelamin : </label>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="Pria" name="jeniskelamin" value="Pria" class="custom-control-input">
+            <label class="custom-control-label" for="Pria">Pria</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="Wanita" name="jeniskelamin" value="Wanita" class="custom-control-input">
+            <label class="custom-control-label" for="Wanita">Wanita</label>
+          </div>
+          <div class="form-group">
+            <label for="RT" class="col-form-label">RT</label>
+            <input name="rt" type="number" max="9" placeholder="masukan RT" class="form-control" id="RT">
+          </div>
+          <div class="form-group">
+            <label for="Alamat" class="col-form-label">Alamat</label>
+            <textarea required Name="alamat" class="form-control" placeholder="masukan alamat" id="Alamat"></textarea>
+          </div>
+           <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="Submit" value="Submit" name="tambah" class="btn btn-primary">Tambah data</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock judul2 %}  
+
+  {% block isi %}
+          <div class="container-fluid">
+              
+
+                 <!-- DataTales   -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">data seluruh warga</h6>
+              <a  href="{% url 'cari' %}" class="mt-4 d-none d-sm-inline-block btn btn-sm btn-info shadow-sm"><i class="pr-2 fas fa-search fa-sm text-white-50"></i>Cari data</a>
+
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                     <tr>
+                      <th>NO</th>
+                      <th>nik</th>
+                      <th>Nama</th>
+                      <th>jenis kelamin</th>
+                      <th>rt</th>
+                      <th>alamat</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>NO</th>
+                      <th>nik</th>
+                      <th>Nama</th>
+                      <th>jenis kelamin</th>
+                      <th>rt</th>
+                      <th>alamat</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                  {% for data in datauser %}
+                  
+                  
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td>{{data.nik}}</td>
+                      <td>{{data.nama}}</td>
+                      <td>{{data.jeniskelamin}}</td>
+                      <td>{{data.rt}}</td>
+                      <td>{{data.alamat}}</td>
+                      <td>
+                        <a href="{% url 'delete' data.id %}" onclick="return confirm('yakin mau hapus data ini ?')" class="btn btn-danger">hapus</a>
+                        <a href="{% url 'update' data.id %}" class="btn btn-warning">Update</a>
+
+
+                      </td>
+                      
+                    </tr>
+                  {% endfor %}  
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+         
+
+  {% endblock isi %}

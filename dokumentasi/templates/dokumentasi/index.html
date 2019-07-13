@@ -1,0 +1,38 @@
+{% extends "index.html" %}
+{% block judul1 %}
+<title>halaman dokumentasi</title>
+{% endblock judul1 %}
+{% block isi %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-md-8 col-sm-12">
+        <div class="row ">
+            <div class="atasan col-lg-12 col-sm-12 col-md-12 ">
+                <h5 class="text-center">daftar dokumentasi</h5>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    {% for d in data %}
+    
+    <div class="col-lg-4 col-md-4 col-sm-6 ">
+        <div class="card">
+          <div class="col-4 p-2 thumbnail-image-container img-fluid col-2">
+              <img width="20%" src="{{d.gambarutama.url}}" class="img-fluid img-thumbnail card-img-top " alt="gambarutama">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{d.judul}}</h5>
+            
+            <p class="card-text">{{d.deskripsi}}</p>
+            <a href="{% url 'detail' d.slug %}" class="btn btn-primary">lihat selengkapnya</a>
+          </div>
+        </div>
+    </div>
+    
+        {% endfor %}
+
+  </div>
+</div>
+
+{% endblock isi %}

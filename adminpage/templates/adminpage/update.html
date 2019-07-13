@@ -1,0 +1,60 @@
+{% extends "adminpage/index.html" %}
+{% block judul %}
+    <title>Update data</title>
+{% endblock judul %}
+{% block judul2 %}
+     <h1 class="h3 mb-0 text-gray-800">pembaharuan data penduduk</h1>
+
+{% endblock judul2 %}
+{% block isi %}
+<div class="card">
+  <div class="card-header">
+    update data
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">harap pastikan data valid</h5>
+        <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-12 ">
+
+        <form method="POST">
+        {% csrf_token %}
+          <div class="form-group">
+            <label for="NIK" class="col-form-label">NIK</label>
+            <input name="nik" type="text" placeholder="Masukan NIK" value="{{nik}}" class="form-control" id="NIK">
+          </div>
+          <div class="form-group">
+            <label for="Nama" class="col-form-label">Nama</label>
+            <input value="{{nama}}" name="nama" type="text" placeholder="Masukan nama"  class="form-control" id="Nama">
+          </div>
+          <div class="form-group">
+            <label for="tanggal" class="col-form-label">Tanggal lahir</label>
+            <input required value="{{tanggallahir|date:"Y-m-d"}}" name="tanggallahir" type="date" class="form-control" id="tanggal">
+          </div>
+          <label class="col-form-label">Jenis Kelamin : </label>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="Pria" name="jeniskelamin" value="Pria" class="custom-control-input">
+            <label class="custom-control-label" for="Pria">Pria</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="Wanita" name="jeniskelamin" value="Wanita" class="custom-control-input">
+            <label class="custom-control-label" for="Wanita">Wanita</label>
+          </div>
+          <div class="form-group">
+            <label for="RT" class="col-form-label">RT</label>
+            <input name="rt"  type="number" max="9" placeholder="masukan RT" value="{{rt}}" class="form-control" id="RT">
+          </div>
+          <div class="form-group">
+            <label for="Alamat" class="col-form-label">Alamat</label>
+            <textarea Name="alamat" class="form-control" placeholder="masukan alamat baru" id="Alamat"></textarea>
+          </div>
+           <div class="modal-footer">
+            <a href="{% url 'atur' %}" class="btn btn-secondary">batal</a>
+            <button type="Submit" value="Submit" name="perbarui" class="btn btn-primary">update data</button>
+        </div>
+        </form>
+        </div>
+        </div>
+  </div>
+</div>
+
+{% endblock isi %}

@@ -1,0 +1,83 @@
+{% extends "adminpage/index.html" %}
+
+{% block judul %}
+<title>cari data</title>
+{% endblock judul %}
+{% block judul2 %}
+     <h1 class="h3 mb-0 text-gray-800">cari data penduduk</h1>
+
+{% endblock judul2 %}
+{% block isi %}
+               <div class="container-fluid">
+              
+
+                 <!-- DataTales   -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+            {% block atasan %}
+            
+              <h6 class="m-0 font-weight-bold text-primary">data seluruh warga</h6>
+              <p class="text-bold text-left">cari per RT :</p>
+              {% for a in rtloop %}
+                    <a href="{% url 'carirt' a.rt %}" class="btn btn-info">RT {{a.rt}}</a>
+              {% endfor %}
+              
+
+              <br>
+              <a  href="{% url 'print' %}" target="_blank" class="mt-4 d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="pr-2 fas fa-print fa-sm text-white-50"></i>Print data</a>
+              
+            {% endblock atasan %}
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                     <tr>
+                      <th>NO</th>
+                      <th>nik</th>
+                      <th>Nama</th>
+                      <th>jenis kelamin</th>
+                      <th>rt</th>
+                      <th>alamat</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>NO</th>
+                      <th>nik</th>
+                      <th>Nama</th>
+                      <th>jenis kelamin</th>
+                      <th>rt</th>
+                      <th>alamat</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                  {% for data in datauser %}
+                  
+                  
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td>{{data.nik}}</td>
+                      <td>{{data.nama}}</td>
+                      <td>{{data.jeniskelamin}}</td>
+                      <td>{{data.rt}}</td>
+                      <td>{{data.alamat}}</td>
+                      
+                      
+                    </tr>
+                  {% endfor %}  
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+         
+
+{% endblock isi %}

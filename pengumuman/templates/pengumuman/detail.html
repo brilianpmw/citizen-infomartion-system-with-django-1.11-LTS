@@ -1,0 +1,51 @@
+{% extends "index.html" %}
+{% block isi %}
+
+<div class="container pt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 col-sm-12 pt-3">
+      <div class="card border-dark" >
+        <div class="card-header">Pengumuman</div>
+        <div class="card-body text-dark">
+          <h5 class="card-title">{{pengumuman.judul}}</h5>
+          <hr>
+          <p class="text-center">ditulis oleh : {{pengumuman.pembuat}} | dibuat Pada   : {{pengumuman.dibuat}} </p>
+          <hr>
+          <p class="card-text">{{pengumuman.isi}}</p>
+          <p class="text-center">--------------------------------</p>
+          <p class="text-center text-info">sayangilah keluargamu selalu :)</p>        
+        </div>
+      </div>      
+    </div>
+    
+    <div class="col-lg-4 col-sm-12">
+    <div class="row ">
+            <div class="atasan col-lg-12 col-sm-12 col-md-12 ">
+                <h5>Pengumuman Lain</h5>
+            </div>
+          </div>
+              <div class="card mt-4">
+                <div class="card-header text-white bg-primary">
+                  Pengumuman Penting
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Cras justo odio</li>
+                  <li class="list-group-item">Dapibus ac facilisis in</li>
+                  <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+              </div>
+              <div class="card">
+                <div class="text-white card-header bg-primary">
+                  Pengumuman
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Cras justo odio</li>
+                  <li class="list-group-item">Dapibus ac facilisis in</li>
+                  <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+              </div>
+    </div>
+  </div>
+</div>
+
+{% endblock isi %}

@@ -1,0 +1,57 @@
+{% extends "index.html" %}
+{% block isi %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-8 col-sm-12">
+                 <div class="row ">
+                    <div class="atasan col-lg-12 col-sm-12 col-md-12 ">
+                        <h5 class="text-center">Pengumuman Hangat</h5>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                    {% comment %} awal loop {% endcomment %}
+                    {% for dapen in datapenting %}
+                    
+                        <div class="card text-center mt-3">
+                            <div class="card-header">
+                                Pengumuman Sangat Penting
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{dapen.judul}}</h5>
+                                <p class="card-text">{{dapen.deskripsi}}</p>
+                                <a href="{% url 'detail' dapen.slug %}" class="btn btn-primary">baca selengkapnya</a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                di buat oleh  : {{dapen.pembuat}}   | pada : {{dapen.dibuat}}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% comment %} akhir loop {% endcomment %}
+                    </div>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
+                    {% comment %} awal loop {% endcomment %}
+                    {% for dabis in databiasa %}
+                    
+                        <div class="card text-center mt-3">
+                            <div class="card-header">
+                                Pengumuman penting
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{dabis.judul}}</h5>
+                                <p class="card-text">{{dabis.deskripsi}}</p>
+                                <a href="{% url 'detail' dabis.slug %}" class="btn btn-primary">baca selengkapnya</a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                di dibuat oleh  : {{dabis.pembuat}}    | pada : {{dabis.dibuat}}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% comment %} akhir loop {% endcomment %}
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock isi %}

@@ -1,0 +1,55 @@
+{% extends "adminpage/index.html" %}
+{% block judul %}
+    <title>Update pengumuman</title>
+{% endblock judul %}
+{% block judul2 %}
+     <h1 class="h3 mb-0 text-gray-800">edit pengumuman</h1>
+
+{% endblock judul2 %}
+{% block isi %}
+<div class="card">
+  <div class="card-header">
+    edit pengumuman
+  </div>
+  <div class="card-body">
+        <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-8 col-sm-12 ">
+
+        <form method="POST">
+        {% csrf_token %}
+          <div class="form-group">
+            <label for="judul" class="col-form-label">judul</label>
+            <input name="judul" type="text" placeholder="Masukan judul" value="{{judul}}" class="form-control" id="judul">
+          </div>
+          <div class="form-group">
+            <label for="deskripsi" class="col-form-label">deskripsi</label>
+            <input name="deskripsi" value="{{deskripsi}}" type="text" class="form-control" id="deskripsi">
+          </div>
+           <div class="form-group">
+            <label for="pembuat" class="col-form-label">pengedit</label>
+            <input name="pembuat" value="{{user}}" type="text" class="form-control" id="pembuat" readonly>
+          </div>
+          <label class="col-form-label">Kategori :</label>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="sp" name="kategori" value="sp" class="custom-control-input">
+            <label class="custom-control-label" for="sp">sangat penting</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="biasa" name="kategori" value="bs" class="custom-control-input">
+            <label class="custom-control-label" for="biasa">biasa</label>
+          </div>
+         <div class="form-group">
+            <label for="isi" class="col-form-label">isi</label>
+            <textarea Name="isi" class="form-control" placeholder="masukan isi"  id="isi">{{isi}}</textarea>
+          </div>
+           <div class="modal-footer">
+            <a href="{% url 'tambahpengumuman' %}" class="btn btn-secondary">batal</a>
+            <button type="Submit" value="Submit" name="update" class="btn btn-primary">update data</button>
+        </div>
+        </form>
+        </div>
+        </div>
+  </div>
+</div>
+
+{% endblock isi %}

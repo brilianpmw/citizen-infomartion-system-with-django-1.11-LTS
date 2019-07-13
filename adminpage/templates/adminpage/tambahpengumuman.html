@@ -1,0 +1,145 @@
+{% extends "adminpage/index.html" %}
+{% block judul %}
+    <title>Tambah Pengumuman</title>
+{% endblock judul %}
+{% block judul2 %}
+<h1 class="h3 mb-0 text-gray-800">pengumuman RW 12</h1>
+<a  href="#" data-toggle="modal" data-target="#modaltambah" class=" d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i>Buat Pengumuman</a>
+ <!-- modal tamba -->
+ <div class="modal fade" id="modaltambah" tabindex="-1" role="dialog" aria-labelledby="tambah" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tambah">tambah Pengumuman</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST">
+        {% csrf_token %}
+          <div class="form-group">
+            <label for="judul" class="col-form-label">Judul Pengumuman</label>
+            <input name="judul" type="text" placeholder="masukan judul pengumuman" class="form-control" id="judul">
+          </div>
+          <div class="form-group">
+            <label for="deskripsi" class="col-form-label">deskripsi</label>
+            <input name="deskripsi" type="text" class="form-control" id="deskripsi">
+          </div>
+          <div class="form-group">
+            <label for="pembuat" class="col-form-label">pembuat</label>
+            <input name="pembuat" value="{{user}}" type="text" class="form-control" id="pembuat" readonly>
+          </div>
+
+
+                <fieldset class="form-group">
+                    <div class="row">
+                    <legend class="col-form-label col-sm-2 pt-0">Kategori</legend>
+                    <div class="col-sm-10">
+                        <div class="form-check">
+                        <input class="form-check-input" type="radio" name="kategori" id="kategori1" value="sp" >
+                        <label class="form-check-label" for="kategori1">
+                            sangat penting
+                        </label>
+                        </div>
+                        <div class="form-check">
+                        <input class="form-check-input" type="radio" name="kategori" id="kategori2" value="bs">
+                        <label class="form-check-label" for="kategori2">
+                            biasa
+                        </label>
+                        </div>
+                        {% comment %} <div class="form-check disabled">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
+                        <label class="form-check-label" for="gridRadios3">
+                            Third disabled radio
+                        </label>
+                        </div> {% endcomment %}
+                    </div>
+                    </div>
+                </fieldset>
+          
+          
+          <div class="form-group">
+            <label for="isi" class="col-form-label">isi</label>
+            <textarea Name="isi" class="form-control" placeholder="masukan isi pengumuman" id="isi"></textarea>
+          </div>
+           <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="Submit" value="Submit" name="tambahpengumuman" class="btn btn-primary">buat pengumuman</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock judul2 %}  
+
+  {% block isi %}
+          <div class="container-fluid">
+              
+
+                 <!-- DataTales   -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Seluruh pengumuman</h6>
+
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                     <tr>
+                      <th>NO</th>
+                      <th>judul</th>
+                      <th>kategori</th>
+                      <th>pembuat</th>
+                      <th>di edit</th>
+                      <th>aksi</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>NO</th>
+                      <th>judul</th>
+                      <th>kategori</th>
+                      <th>pembuat</th>
+                      <th>di edit</th>
+                      <th>aksi</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                  {% for data in pengumuman %}
+                  
+                  
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td>{{data.judul}}</td>
+                      <td>{{data.kategori}}</td>
+                      <td>{{data.pembuat}}</td>
+                      <td>{{data.updated}}</td>
+                      <td>
+                        <a href="{% url 'deletepengumuman' data.id %}" onclick="return confirm('yakin mau hapus data ini ?')" class="btn btn-danger">hapus</a>
+                        <a href="{% url 'updatepengumuman' data.id %}" class="btn btn-warning">Update</a>
+
+
+                      </td>
+                      
+                    </tr>
+                  {% endfor %}  
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+         
+
+  {% endblock isi %}

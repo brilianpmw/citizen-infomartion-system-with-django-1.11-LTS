@@ -1,0 +1,15 @@
+{% extends "adminpage/cari.html" %}
+{% block judul %}
+<title>data rt {{rtaktif}}</title>
+{% endblock judul %}
+{% block atasan %}
+            <h6 class="m-0 font-weight-bold text-primary">data RT {{rtaktif}}</h6>
+              <p class="text-bold text-left">cari data RT lain :</p>
+              {% for a in rtloop %}
+               
+                    <a href="{% url 'carirt' a.rt %}" class="btn btn-info">RT {{a.rt}}</a>
+              {% endfor %}
+              <br>
+            <a  href="../printrt/{{rtaktif}}" target="_blank" class="mt-4 d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="pr-2 fas fa-print fa-sm text-white-50"></i>Print data</a>
+
+{% endblock atasan %}
