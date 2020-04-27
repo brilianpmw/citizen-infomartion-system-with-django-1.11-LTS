@@ -1,1 +1,1 @@
-- masih dalam pengembangan lanjutan
+- admin page has complete feature
